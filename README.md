@@ -1,3 +1,3 @@
 # ebanking-backend
 
-https://www.youtube.com/watch?v=muuFQWnCQd0&t=638s 2h
+https://www.youtube.com/watch?v=PTI8cniOXLc 2h53
