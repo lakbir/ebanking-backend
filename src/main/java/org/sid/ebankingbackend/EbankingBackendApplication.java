@@ -49,7 +49,7 @@ public class EbankingBackendApplication {
 			});
 		};
 	}
-	//@Bean
+	@Bean
 	CommandLineRunner start(CustomerRepository customerRepository,
 							AccountOperationRepository operationRepository,
 							BankAccountRepository accountRepository){
@@ -83,7 +83,7 @@ public class EbankingBackendApplication {
 			});
 
 			accountRepository.findAll().forEach(bankAccount -> {
-				for (int i=0; i<10; i++){
+				for (int i=0; i<30; i++){
 					AccountOperation accountOperation = new AccountOperation();
 					accountOperation.setAmount(Math.random()*12000);
 					accountOperation.setOperationDate(new Date());

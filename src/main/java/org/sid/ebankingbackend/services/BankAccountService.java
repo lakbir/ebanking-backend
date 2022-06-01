@@ -1,9 +1,6 @@
 package org.sid.ebankingbackend.services;
 
-import org.sid.ebankingbackend.dtos.BankAccountDTO;
-import org.sid.ebankingbackend.dtos.CurrentBankAccountDTO;
-import org.sid.ebankingbackend.dtos.CustomerDTO;
-import org.sid.ebankingbackend.dtos.SavingBankAccountDTO;
+import org.sid.ebankingbackend.dtos.*;
 import org.sid.ebankingbackend.entities.BankAccount;
 import org.sid.ebankingbackend.entities.CurrentAccount;
 import org.sid.ebankingbackend.entities.Customer;
@@ -28,11 +25,13 @@ public interface BankAccountService {
     CurrentBankAccountDTO saveCurrentBankAccount(double initialBalance, double overDraft, Long customerId) throws CustomerNotFoundException;
     SavingBankAccountDTO saveSavingBankAccount(double initialBalance, double interestRate, Long customerId) throws CustomerNotFoundException;
     BankAccountDTO getBankAccount(String accountId) throws BankAccountNotFoundException;
-    List<BankAccount> bankAccountList();
+    List<BankAccountDTO> bankAccountList();
 
     // bank operation's methods
     void debit(String accountId, double amount, String  description) throws BankAccountNotFoundException, BalanceNotSufficientException;
     void credit(String accountId, double amount, String  description) throws BankAccountNotFoundException;
     void virement(String accountIdSource, String accountIdDestination, double amount) throws BankAccountNotFoundException, BalanceNotSufficientException;
+    List<AccountOperationDTO> accountHistory(String accountId);
 
+    AccountHistoryDTO accountHistoryPage(String accountId, int page, int size) throws BankAccountNotFoundException;
 }
