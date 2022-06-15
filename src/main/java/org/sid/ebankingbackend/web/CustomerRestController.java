@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.sid.ebankingbackend.dtos.CustomerDTO;
 import org.sid.ebankingbackend.exceptions.CustomerNotFoundException;
 import org.sid.ebankingbackend.services.BankAccountService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @AllArgsConstructor
+@CrossOrigin("*")
 public class CustomerRestController {
 
     private BankAccountService bankAccountService;
@@ -19,6 +21,11 @@ public class CustomerRestController {
     @GetMapping("/customers")
     public List<CustomerDTO> customers(){
         return bankAccountService.listCustomer();
+    }
+
+    @GetMapping("/customers/search")
+    public List<CustomerDTO> searchCustomers(@RequestParam(name = "keyword", defaultValue = "") String keyword){
+        return bankAccountService.searchCustomers(keyword);
     }
 
     @GetMapping("/customers/{id}")
